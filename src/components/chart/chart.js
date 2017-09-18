@@ -9,7 +9,7 @@ Vue.component('d3__chart', {
     'chart-data',  // Data for plotting
   ],
   computed: {
-    // SVG viewbox
+    // SVG viewBox
     viewBox() {
       const outerWidth = this.layout.width + this.layout.marginLeft + this.layout.marginRight;
       const outerHeight = this.layout.height + this.layout.marginTop + this.layout.marginBottom;
@@ -86,7 +86,7 @@ Vue.component('d3__axis', {
     },
   },
   methods: {
-    // Return a class list containg the appropriate labels for axes
+    // Return a class list containing the appropriate labels for axes
     getAxisClasses() {
       const axis = {
         top: 'x',
@@ -290,22 +290,5 @@ Vue.component('d3__area', {
         this.drawArea();
       },
     },
-  },
-});
-
-// Initialize chart
-const d3Vis = new Vue({
-  el: '#chart',
-  data: {
-    layout: {
-      width: 800,
-      height: 250,
-      marginTop: 45,
-      marginRight: 35,
-      marginBottom: 50,
-      marginLeft: 50,
-    },
-    chartData: c,
-    axes: ['left', 'bottom'],
   },
 });
