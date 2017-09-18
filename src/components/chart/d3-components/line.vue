@@ -17,18 +17,14 @@ export default {
 
       // Line object
       const line = d3.line()
-        .x(function(d) {
-          return scale.x(d.timestamp);
-        })
-        .y(function(d) {
-          return scale.y(d.value);
-        });
+        .x(d => scale.x(d.timestamp))
+        .y(d => scale.y(d.value));
 
       // DOM node for line
       const $line = d3.select(this.$refs.line);
-      $line.data([this.seriesData.values.filter(function(d) {
-        return typeof d.value !== typeof null;
-      })])
+      $line.data([
+        this.seriesData.values.filter(d => typeof d.value !== typeof null),
+      ])
       .attr('d', line);
     },
   },

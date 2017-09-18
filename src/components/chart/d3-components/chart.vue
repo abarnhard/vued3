@@ -51,9 +51,7 @@ export default {
     getScaleX() {
       return d3.scaleTime()
         .range([0, this.layout.width])
-        .domain(d3.extent(chartData, function(d) {
-          return d3.utcParse('%Y-%m-%dT%H:%M:%S')(d[0]).setHours(0, 0, 0, 0);
-        }));
+        .domain(d3.extent(this.chartData, d => d3.utcParse('%Y-%m-%dT%H:%M:%S')(d[0]).setHours(0, 0, 0, 0)));
     },
     // Get y-axis scale
     getScaleY() {
@@ -61,11 +59,7 @@ export default {
         .range([this.layout.height, 0])
         .domain([
           0,
-          d3.max(this.chartData, function(d) {
-            return d3.max(d.values, function(e) {
-              return e.value;
-            });
-          }),
+          d3.max(this.chartData, d => d3.max(d.values, e => e.value)),
         ]);
     },
   },

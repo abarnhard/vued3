@@ -19,12 +19,8 @@ export default {
       // DOM node for points
       const $point = d3.select(this.$refs.point);
       $point.datum(this.pointData)
-        .attr('cx', function(d) {
-          return scale.x(d.timestamp);
-        })
-        .attr('cy', function(d) {
-          return scale.y(d.value);
-        })
+        .attr('cx', d => scale.x(d.timestamp))
+        .attr('cy', d => scale.y(d.value))
         .attr('r', 5);
     },
   },

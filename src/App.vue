@@ -53,17 +53,13 @@ function createChartData() {
   const columns = ['Timestamp', 'Previous', 'Current'];
   const offset = 1;
 
-  return columns.slice(offset).map(function(id, index) {
-    return {
-      id: id,
-      values: chartData.map(function(d) {
-        return {
-          timestamp: d3.utcParse('%Y-%m-%dT%H:%M:%S')(d[0]).setHours(0,0,0,0),
-          value: d[index + offset],
-        };
-      }),
-    };
-  });
+  return columns.slice(offset).map((id, index) => ({
+    id,
+    values: chartData.map(d => ({
+      timestamp: d3.utcParse('%Y-%m-%dT%H:%M:%S')(d[0]).setHours(0, 0, 0, 0),
+      value: d[index + offset],
+    })),
+  }));
 }
 
 export default {

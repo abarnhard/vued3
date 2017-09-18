@@ -6,7 +6,6 @@
 import * as d3 from 'd3';
 
 export default {
-  template: '#d3__area',
   props: ['layout', 'series-data', 'scale'],
   mounted() {
     this.drawArea();
@@ -18,20 +17,14 @@ export default {
 
       // Area object
       const area = d3.area()
-        .x(function(d) {
-          return scale.x(d.timestamp);
-        })
+        .x(d => scale.x(d.timestamp))
         .y0(scale.y(0))
-        .y1(function(d) {
-          return scale.y(d.value);
-        });
+        .y1(d => scale.y(d.value));
 
       // DOM node for area
       const $area = d3.select(this.$refs.area);
 
-      $area.datum(this.seriesData.values.filter(function(d) {
-        return typeof d.value !== typeof null;
-      }))
+      $area.datum(this.seriesData.values.filter(d => typeof d.value !== typeof null))
       .attr('d', area);
     },
   },
