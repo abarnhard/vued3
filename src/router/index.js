@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import Chart from '@/components/chart';
+import BarChart from '@/components/bar-chart';
+import ScatterPlot from '@/components/scatter-plot';
 
 Vue.use(Router);
 
@@ -8,8 +9,13 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'Chart',
-      component: Chart,
+      name: 'ScatterPlot',
+      component: ScatterPlot,
+    },
+    {
+      path: '/bar-chart',
+      name: 'BarChart',
+      component: BarChart,
     },
   ],
 });
