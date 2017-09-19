@@ -24,6 +24,8 @@ module.exports = {
   },
   // add your custom rules here
   'rules': {
+    'no-use-before-define': 0,
+    'prefer-arrow-callback': 1,
     // don't require .vue extension when importing
     'import/extensions': ['error', 'always', {
       'js': 'never',

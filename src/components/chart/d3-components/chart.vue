@@ -5,7 +5,8 @@
                 v-for="axis in _.uniq(axes)"
                 :axis="axis"
                 :layout="layout"
-                :scale="scale")
+                :scale="scale"
+                :key="axis")
 
             d3__series(
                 v-for="seriesData in chartData"
@@ -16,6 +17,7 @@
 
 <script>
 import * as d3 from 'd3';
+import * as _ from 'underscore';
 
 export default {
   props: [
@@ -36,6 +38,9 @@ export default {
         transform: `translate(${this.layout.marginLeft}px, ${this.layout.marginTop}px)`,
       };
     },
+    _() {
+      return _;
+    },
   },
   data() {
     return {
@@ -51,7 +56,9 @@ export default {
     getScaleX() {
       return d3.scaleTime()
         .range([0, this.layout.width])
-        .domain(d3.extent(this.chartData, d => d3.utcParse('%Y-%m-%dT%H:%M:%S')(d[0]).setHours(0, 0, 0, 0)));
+        .domain(d3.extent(this.chartData, function parseDate(d) {
+          return d.values.map(value => value.timestamp);
+        }));
     },
     // Get y-axis scale
     getScaleY() {

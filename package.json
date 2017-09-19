@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "d3": "^4.10.2",
+    "underscore": "^1.8.3",
     "vue": "^2.4.2",
     "vue-router": "^2.7.0",
     "vuex": "^2.4.0"
